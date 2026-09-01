@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, date, tags, image } = post.data;
+---
+
+<a
+    href={`/blog/${post.id}`}
+    class="card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl"
+    data-title={title.toLowerCase()}
+    data-tags={tags.join(",").toLowerCase()}
+    data-year={date.getFullYear()}
+>
+    <figure class="aspect-video overflow-hidden">
+        <Image
+            src={image}
+            alt={title}
+            width={600}
+            height={340}
+            class="h-full w-full object-cover"
+        />
+    </figure>
+    <div class="card-body">
+        <div class="flex flex-wrap gap-2">
+            {
+                tags
+                    .slice(0, 3)
+                    .map((tag: string) => (
+                        <span class="badge badge-outline badge-sm">{tag}</span>
+                    ))
+            }
+        </div>
+        <h3 class="card-title text-lg">{title}</h3>
+        <p class="line-clamp-2 text-sm text-base-content/60">{description}</p>
+        <time
+            datetime={date.toISOString()}
+            class="mt-2 text-xs text-base-content/50"
+        >
+            {
+                date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+        </time>
+    </div>
+</a>

@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact - Pepe Coral">
+    <header class="mb-4">
+        <div class="badge badge-primary badge-outline mb-4">Contact</div>
+
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            Let's get in touch.
+        </h1>
+
+        <p class="mt-5 text-lg text-base-content/70">
+            Have a question, want to collaborate, or just want to say hello? I'd
+            love to hear from you.
+        </p>
+    </header>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+        <div class="card border border-base-300 bg-base-200/50 lg:col-span-1">
+            <div class="card-body">
+                <h2 class="card-title">Get in touch</h2>
+
+                <div class="divider my-1"></div>
+
+                <div>
+                    <div class="text-sm text-base-content/60">Email</div>
+
+                    <button
+                        id="copy-email-info"
+                        type="button"
+                        class="link link-primary mt-1 text-left font-medium"
+                        data-email="hello@pepecoral.dev"
+                    >
+                        hello@pepecoral.dev
+                    </button>
+                </div>
+
+                <div class="mt-4">
+                    <div class="text-sm text-base-content/60">Elsewhere</div>
+
+                    <div class="mt-2 flex gap-4">
+                        <a
+                            href="https://github.com/pepecoral"
+                            class="link link-hover"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/"
+                            class="link link-hover"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-primary text-primary-content lg:col-span-2">
+            <div class="card-body flex flex-col justify-center gap-6">
+                <div>
+                    <h2 class="card-title text-2xl sm:text-3xl">Let's talk.</h2>
+
+                    <p class="mt-3 max-w-lg opacity-80">
+                        Whether you have an idea, a project, or just want to say
+                        hello, feel free to reach out.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <button
+                        id="copy-email"
+                        type="button"
+                        class="btn btn-neutral"
+                        data-email="hello@pepecoral.dev"
+                    >
+                        Copy email
+                    </button>
+
+                    <div
+                        id="copy-success"
+                        class="badge badge-success hidden"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        Copied!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const email = "hello@pepecoral.dev";
+    const buttons =
+        document.querySelectorAll<HTMLButtonElement>("[data-email]");
+    const success = document.querySelector("#copy-success");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(email);
+
+                success?.classList.remove("hidden");
+
+                setTimeout(() => {
+                    success?.classList.add("hidden");
+                }, 2000);
+            } catch {
+                window.location.href = `mailto:${email}`;
+            }
+        });
+    });
+</script>
