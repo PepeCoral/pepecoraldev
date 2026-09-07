@@ -1,20 +1,46 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import type { Translation } from "../i18n/types";
+
 const currentPath = Astro.url.pathname;
 
-const navItems = [
-    { href: "/projects", label: "/projects" },
-    { href: "/blog", label: "/blog" },
-    { href: "/contact", label: "/contact" },
-];
-
 const isActive = (href: string) => currentPath.startsWith(href);
+
+interface Props {
+    t: Translation;
+}
+
+const { t } = Astro.props;
+
+const altLocale = t.locale === "en" ? "es" : "en";
+
+const currentPathWithoutLocale =
+    t.locale === "en"
+        ? Astro.url.pathname
+        : Astro.url.pathname.replace(/^\/es/, "");
+
+const altLocaleHref = getRelativeLocaleUrl(
+    altLocale,
+    currentPathWithoutLocale || "/",
+);
+
+const altLocaleLabel = `/${altLocale}`;
+
+const navItems = [
+    { href: "/projects", label: t.nav.projects },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/contact", label: t.nav.contact },
+];
 ---
 
 <div
     class="navbar bg-base-100 shadow-sm max-w-2xl mx-auto rounded-full px-4 my-5"
 >
     <div class="navbar-start">
-        <a class="ml-4 font-bold text-xl text-primary" href="/"> Pepe Coral </a>
+        <a
+            class="ml-4 font-bold text-xl text-primary"
+            href={getRelativeLocaleUrl(t.locale, "/")}>{t.nav.pepe}</a
+        >
     </div>
 
     <ul class="navbar-end flex menu menu-horizontal px-1">
@@ -22,7 +48,7 @@ const isActive = (href: string) => currentPath.startsWith(href);
             navItems.map(({ href, label }) => (
                 <li>
                     <a
-                        href={href}
+                        href={getRelativeLocaleUrl(t.locale, href)}
                         class:list={{ "text-primary": isActive(href) }}
                     >
                         {label}
@@ -30,5 +56,8 @@ const isActive = (href: string) => currentPath.startsWith(href);
                 </li>
             ))
         }
+        <li>
+            <a href={altLocaleHref}>{altLocaleLabel}</a>
+        </li>
     </ul>
 </div>

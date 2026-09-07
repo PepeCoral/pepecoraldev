@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import Layout from "../../../layouts/Layout.astro";
+import ProjectCard from "../../../components/projects/ProjectCard.astro";
+
+export { getLocaleStaticPaths as getStaticPaths } from "../../../i18n/routes";
+import getTranslation from "../../../i18n";
+
+const t = getTranslation(Astro.params.locale);
+const projects: CollectionEntry<"projects">[] = await getCollection("projects");
+---
+
+<Layout t={t} page={t.projects}>
+    <h1 class="mb-8 text-3xl font-bold">{t.projects.h1}</h1>
+
+    <p class="mb-6 text-sm text-base-content/50">
+        {projects.length}&nbsp;{t.projects.projects}
+    </p>
+
+    <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+</Layout>

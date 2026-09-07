@@ -1,8 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
+import getTranslation from "../../i18n";
+export { getLocaleStaticPaths as getStaticPaths } from "../../i18n/routes";
+const t = getTranslation(Astro.params.locale);
 ---
 
-<Layout title="Contact - Pepe Coral">
+<Layout t={t} page={t.contact}>
     <header class="mb-4">
         <div class="badge badge-primary badge-outline mb-4">Contact</div>
 

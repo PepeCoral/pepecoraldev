@@ -1,10 +1,14 @@
 ---
-// src/pages/index.astro
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-import Layout from "../layouts/Layout.astro";
-import PostCard from "../components/blog/PostCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/blog/PostCard.astro";
+
+import getTranslation from "../../i18n";
+export { getLocaleStaticPaths as getStaticPaths } from "../../i18n/routes";
+
+const t = getTranslation(Astro.params.locale);
 
 const posts: CollectionEntry<"blog">[] = await getCollection("blog");
 
@@ -14,13 +18,12 @@ const recentPosts = posts
 
 const socials = [
 	{ label: "GitHub", href: "https://github.com/pepecoral" },
-	{ label: "LinkedIn", href: "https://linkedin.com/in/pepecoral" },
+	{ label: "LinkedIn", href: "https://linkedin.com/in/pepe-coral" },
 ];
 ---
 
-<Layout>
-	<!-- Hero / CTA -->
-	<section class="hero py-10 sm:py-16">
+<Layout t={t} page={t.home}>
+	<section class="hero">
 		<div class="hero-content flex-col text-center">
 			<div class="avatar mb-6">
 				<div class="w-28 sm:w-32 rounded-full">
@@ -29,14 +32,12 @@ const socials = [
 			</div>
 
 			<div class="badge badge-primary badge-outline mb-3">
-				Available for work
+				{t.home.workAvailable}
 			</div>
 
-			<h1 class="text-4xl sm:text-5xl font-bold">Hi, I'm Pepe Coral</h1>
+			<h1 class="text-4xl sm:text-5xl font-bold">{t.home.h1}</h1>
 			<p class="py-4 max-w-xl text-base-content/70">
-				Software engineer who likes building clean, fast web apps. I
-				write about what I learn along the way — take a look below, or
-				just say hi.
+				{t.home.body}
 			</p>
 
 			<div class="flex flex-wrap justify-center gap-3">
@@ -52,7 +53,7 @@ const socials = [
 						<rect x="2" y="4" width="20" height="16" rx="2"></rect>
 						<path d="m22 6-10 7L2 6"></path>
 					</svg>
-					Get in touch
+					{t.home.getInTouch}
 				</a>
 
 				{
@@ -74,12 +75,11 @@ const socials = [
 
 	<div class="divider"></div>
 
-	<!-- Latest posts -->
 	<section>
 		<div class="mb-6 flex items-center justify-between">
-			<h2 class="text-2xl font-bold">Latest posts</h2>
+			<h2 class="text-2xl font-bold">{t.home.latestPosts}</h2>
 			<a href="/blog" class="link link-primary text-sm font-medium">
-				View all &rarr;
+				{t.home.viewAllPosts} &rarr;
 			</a>
 		</div>
 
@@ -96,19 +96,5 @@ const socials = [
 				</p>
 			)
 		}
-	</section>
-
-	<div class="divider"></div>
-
-	<!-- Bottom CTA -->
-	<section class="text-center py-8">
-		<h2 class="text-2xl font-bold mb-2">Got a project in mind?</h2>
-		<p class="text-base-content/70 mb-6 max-w-md mx-auto">
-			I'm always happy to hear about new ideas or opportunities. Drop me
-			an email and I'll get back to you.
-		</p>
-		<a href="mailto:hello@pepecoral.dev" class="btn btn-primary btn-wide">
-			Say hello
-		</a>
 	</section>
 </Layout>

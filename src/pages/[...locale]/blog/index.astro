@@ -2,8 +2,13 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-import Layout from "../../layouts/Layout.astro";
-import PostCard from "../../components/blog/PostCard.astro";
+import Layout from "../../../layouts/Layout.astro";
+import PostCard from "../../../components/blog/PostCard.astro";
+
+export { getLocaleStaticPaths as getStaticPaths } from "../../../i18n/routes";
+import getTranslation from "../../../i18n";
+
+const t = getTranslation(Astro.params.locale);
 
 const posts: CollectionEntry<"blog">[] = await getCollection("blog");
 
@@ -12,11 +17,11 @@ const sortedPosts = posts.sort(
 );
 ---
 
-<Layout title="Blog - Pepe Coral" description="Latest articles and updates">
-    <h1 class="mb-8 text-3xl font-bold">Blog</h1>
+<Layout t={t} page={t.blog}>
+    <h1 class="mb-8 text-3xl font-bold">{t.blog.h1}</h1>
 
     <p class="mb-6 text-sm text-base-content/50">
-        {sortedPosts.length} post{sortedPosts.length === 1 ? "" : "s"}
+        {sortedPosts.length}&nbsp;{t.blog.posts}
     </p>
 
     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">

@@ -2,7 +2,11 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { PageTranslation } from "../../../i18n/types";
+import getTranslation from "../../../i18n";
+
+const t = getTranslation(Astro.params.locale);
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -22,11 +26,14 @@ interface Props {
 }
 
 const { post } = Astro.props;
+const { title, description, tags, image } = post.data;
 
 const { Content } = await render(post);
+
+const page: PageTranslation = { title, description };
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout t={t} page={page}>
     <article class="mx-auto max-w-3xl">
         <header class="mb-10">
             <div class="mb-4 flex flex-wrap gap-2">
@@ -38,11 +45,11 @@ const { Content } = await render(post);
             </div>
 
             <h1 class="text-4xl font-bold md:text-5xl">
-                {post.data.title}
+                {title}
             </h1>
 
             <p class="mt-4 text-xl text-base-content/60">
-                {post.data.description}
+                {description}
             </p>
 
             <time
@@ -53,8 +60,8 @@ const { Content } = await render(post);
             </time>
 
             <Image
-                src={post.data.image}
-                alt={post.data.title}
+                src={image}
+                alt={title}
                 class="mt-8 h-auto max-h-[500px] w-full rounded-2xl object-cover"
                 width={1200}
                 height={630}
