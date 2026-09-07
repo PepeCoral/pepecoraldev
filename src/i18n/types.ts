@@ -34,9 +34,17 @@ export interface BlogTranslation extends PageTranslation {
 
 export interface ContactTranslation extends PageTranslation {
     h1: string;
-    posts: string;
+    subtitle: string;
+    getInTouch: string;
+    emailLabel: string;
+    elsewhereLabel: string;
+    copyEmail: string;
+    copied: string;
+    ctaTitle: string;
+    ctaBody: string;
+    github: string;
+    linkedin: string;
 }
-
 export interface ProjectPageTranslation {
     viewInGitHub: string;
     liveDemo: string;
