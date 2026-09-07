@@ -8,8 +8,11 @@ import ProjectCard from "../../../components/projects/ProjectCard.astro";
 export { getLocaleStaticPaths as getStaticPaths } from "../../../i18n/routes";
 import getTranslation from "../../../i18n";
 
-const t = getTranslation(Astro.params.locale);
-const projects: CollectionEntry<"projects">[] = await getCollection("projects");
+const locale = Astro.params.locale ?? "en";
+const t = getTranslation(locale);
+const allProjects: CollectionEntry<"projects">[] = await getCollection("projects");
+
+const projects = allProjects.filter((project) => project.data.locale === locale);
 ---
 
 <Layout t={t} page={t.projects}>
@@ -20,6 +23,8 @@ const projects: CollectionEntry<"projects">[] = await getCollection("projects");
     </p>
 
     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project) => <ProjectCard project={project} />)}
+        {projects.map((project) => (
+        <ProjectCard project={project} locale={locale} t={t} />
+    ))}
     </div>
 </Layout>

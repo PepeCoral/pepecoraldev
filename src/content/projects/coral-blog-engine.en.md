@@ -1,4 +1,6 @@
 ---
+locale: en
+slug: coral-blog-engine
 title: "Coral Blog Engine"
 description: "A lightweight markdown-first blog system on top of Astro content collections, with tag filtering and full-text search."
 tags:

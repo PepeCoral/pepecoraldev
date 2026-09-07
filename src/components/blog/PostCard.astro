@@ -1,17 +1,21 @@
 ---
 import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
     post: CollectionEntry<"blog">;
+    locale: string;
 }
 
-const { post } = Astro.props;
+const { post, locale } = Astro.props;
 const { title, description, date, tags, image } = post.data;
+
+const postUrl = getRelativeLocaleUrl(locale, `/blog/${post.data.slug}`);
 ---
 
 <a
-    href={`/blog/${post.id}`}
+    href={postUrl}
     class="card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl"
     data-title={title.toLowerCase()}
     data-tags={tags.join(",").toLowerCase()}
@@ -43,7 +47,7 @@ const { title, description, date, tags, image } = post.data;
             class="mt-2 text-xs text-base-content/50"
         >
             {
-                date.toLocaleDateString("en-US", {
+                date.toLocaleDateString(locale, {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

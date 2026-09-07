@@ -1,4 +1,6 @@
 ---
+locale: es
+slug: cv
 title: "Automatizando la generación de curriculums con Typst"
 description: "How I turned my CV into a data-driven, programmable document generation system."
 date: 2026-08-20

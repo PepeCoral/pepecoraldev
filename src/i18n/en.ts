@@ -23,6 +23,7 @@ const t: Translation = {
         description: "Pepe Coral's Projects",
         h1: "Projects",
         projects: "projects",
+        featured: "Featured",
     },
     blog: {
         title: "Blog - Pepe Coral",

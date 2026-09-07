@@ -5,20 +5,33 @@ import { Image } from "astro:assets";
 import Layout from "../../../layouts/Layout.astro";
 import { PageTranslation } from "../../../i18n/types";
 import getTranslation from "../../../i18n";
+import { localePaths } from "../../../i18n/routes";
 
-const t = getTranslation(Astro.params.locale);
+const locale = Astro.params.locale ?? "en";
+const t = getTranslation(locale);
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
 
-    return posts.map((post: CollectionEntry<"blog">) => ({
-        params: {
-            slug: post.id,
-        },
-        props: {
-            post,
-        },
-    }));
+    return posts.flatMap((post: CollectionEntry<"blog">) =>
+        localePaths.flatMap(({ params: { locale } }) => {
+            const normalized = locale ?? "en";
+            if (post.data.locale !== normalized) {
+                return [];
+            }
+            return [
+                {
+                    params: {
+                        locale,
+                        slug: post.data.slug,
+                    },
+                    props: {
+                        post,
+                    },
+                },
+            ];
+        }),
+    );
 }
 
 interface Props {
@@ -56,7 +69,7 @@ const page: PageTranslation = { title, description };
                 datetime={post.data.date.toISOString()}
                 class="mt-4 block text-sm text-base-content/50"
             >
-                {post.data.date.toLocaleDateString()}
+                {post.data.date.toLocaleDateString(locale)}
             </time>
 
             <Image

@@ -24,6 +24,7 @@ export interface HomeTranslation extends PageTranslation {
 export interface ProjectsTranslation extends PageTranslation {
     h1: string;
     projects: string;
+    featured: string;
 }
 
 export interface BlogTranslation extends PageTranslation {

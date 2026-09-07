@@ -7,21 +7,30 @@ import Layout from "../../../layouts/Layout.astro";
 import { localePaths } from "../../../i18n/routes";
 import getTranslation from "../../../i18n";
 
-const t = getTranslation(Astro.params.locale);
+const locale = Astro.params.locale ?? "en";
+const t = getTranslation(locale);
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
 
     return projects.flatMap((project: CollectionEntry<"projects">) =>
-        localePaths.map(({ params: { locale } }) => ({
-            params: {
-                locale,
-                slug: project.id,
-            },
-            props: {
-                project,
-            },
-        })),
+        localePaths.flatMap(({ params: { locale } }) => {
+            const normalized = locale ?? "en";
+            if (project.data.locale !== normalized) {
+                return [];
+            }
+            return [
+                {
+                    params: {
+                        locale,
+                        slug: project.data.slug,
+                    },
+                    props: {
+                        project,
+                    },
+                },
+            ];
+        }),
     );
 }
 

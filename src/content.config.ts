@@ -6,10 +6,13 @@ const blog = defineCollection({
     loader: glob({
         pattern: "**/*.{md,mdx}",
         base: "./src/content/blog",
+        generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/, ""),
     }),
 
     schema: ({ image }) =>
         z.object({
+            locale: z.enum(["en", "es"]),
+            slug: z.string(),
             title: z.string(),
             description: z.string(),
             date: z.coerce.date(),
@@ -26,10 +29,13 @@ const projects = defineCollection({
     loader: glob({
         pattern: "**/*.{md,mdx}",
         base: "./src/content/projects",
+        generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/, ""),
     }),
 
     schema: ({ image }) =>
         z.object({
+            locale: z.enum(["en", "es"]),
+            slug: z.string(),
             title: z.string(),
             description: z.string(),
 

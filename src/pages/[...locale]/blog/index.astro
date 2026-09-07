@@ -8,9 +8,12 @@ import PostCard from "../../../components/blog/PostCard.astro";
 export { getLocaleStaticPaths as getStaticPaths } from "../../../i18n/routes";
 import getTranslation from "../../../i18n";
 
-const t = getTranslation(Astro.params.locale);
+const locale = Astro.params.locale ?? "en";
+const t = getTranslation(locale);
 
-const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+
+const posts = allPosts.filter((post) => post.data.locale === locale);
 
 const sortedPosts = posts.sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -25,6 +28,6 @@ const sortedPosts = posts.sort(
     </p>
 
     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        {sortedPosts.map((post) => <PostCard post={post} />)}
+        {sortedPosts.map((post) => <PostCard post={post} locale={locale} />)}
     </div>
 </Layout>

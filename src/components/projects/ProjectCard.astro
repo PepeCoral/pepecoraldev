@@ -1,17 +1,23 @@
 ---
 import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
+import type { Translation } from "../../i18n/types";
 
 interface Props {
     project: CollectionEntry<"projects">;
+    locale: string;
+    t: Translation;
 }
 
-const { project } = Astro.props;
+const { project, locale, t } = Astro.props;
 const { title, description, tags, image, url, github, featured } = project.data;
+
+const projectUrl = getRelativeLocaleUrl(locale, `/projects/${project.data.slug}`);
 ---
 
 <a
-    href={`/projects/${project.id}`}
+    href={projectUrl}
     class:list={[
         "card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl",
         featured ? "border-2 border-primary" : "",
@@ -32,7 +38,7 @@ const { title, description, tags, image, url, github, featured } = project.data;
         {
             featured && (
                 <span class="badge badge-primary badge-sm w-fit font-bold">
-                    Featured
+                    {t.projects.featured}
                 </span>
             )
         }
@@ -48,7 +54,11 @@ const { title, description, tags, image, url, github, featured } = project.data;
         {
             (url || github) && (
                 <div class="card-actions mt-3 justify-end gap-2">
-                    {url && <span class="btn btn-primary btn-xs">Live demo</span>}
+                    {url && (
+                        <span class="btn btn-primary btn-xs">
+                            {t.projectPage.liveDemo}
+                        </span>
+                    )}
                     {github && (
                         <span class="btn btn-outline btn-xs">GitHub</span>
                     )}

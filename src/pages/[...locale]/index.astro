@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
@@ -8,9 +9,12 @@ import PostCard from "../../components/blog/PostCard.astro";
 import getTranslation from "../../i18n";
 export { getLocaleStaticPaths as getStaticPaths } from "../../i18n/routes";
 
-const t = getTranslation(Astro.params.locale);
+const locale = Astro.params.locale ?? "en";
+const t = getTranslation(locale);
 
-const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+
+const posts = allPosts.filter((post) => post.data.locale === locale);
 
 const recentPosts = posts
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -78,7 +82,10 @@ const socials = [
 	<section>
 		<div class="mb-6 flex items-center justify-between">
 			<h2 class="text-2xl font-bold">{t.home.latestPosts}</h2>
-			<a href="/blog" class="link link-primary text-sm font-medium">
+			<a
+				href={getRelativeLocaleUrl(locale, "/blog")}
+				class="link link-primary text-sm font-medium"
+			>
 				{t.home.viewAllPosts} &rarr;
 			</a>
 		</div>
@@ -87,7 +94,7 @@ const socials = [
 			recentPosts.length > 0 ? (
 				<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
 					{recentPosts.map((post) => (
-						<PostCard post={post} />
+						<PostCard post={post} locale={locale} />
 					))}
 				</div>
 			) : (
