@@ -16,7 +16,9 @@ const t: Translation = {
         getInTouch: "Get in touch",
         workAvailable: "Available for work",
         latestPosts: "Latest Posts",
-        viewAllPosts: "View All"
+        viewAllPosts: "View All",
+        featuredProjects: "Latest Projects",
+        viewAllProjects: "View All"
     },
     projects: {
         title: "Projects - Pepe Coral",

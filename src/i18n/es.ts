@@ -16,7 +16,9 @@ const t: Translation = {
         getInTouch: "Ponte en contacto",
         workAvailable: "Disponible para trabajar",
         latestPosts: "Últimos articulos",
-        viewAllPosts: "Ver todos"
+        viewAllPosts: "Ver todos",
+        featuredProjects: "Proyectos",
+        viewAllProjects: "Ver todos"
     },
     projects: {
         title: "Proyectos - Pepe Coral",

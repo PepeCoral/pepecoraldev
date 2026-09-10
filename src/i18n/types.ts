@@ -18,6 +18,8 @@ export interface HomeTranslation extends PageTranslation {
     workAvailable: string;
     latestPosts: string;
     viewAllPosts: string;
+    featuredProjects: string;
+    viewAllProjects: string;
 
 }
 

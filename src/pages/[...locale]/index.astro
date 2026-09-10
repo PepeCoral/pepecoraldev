@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 import PostCard from "../../components/blog/PostCard.astro";
+import ProjectCard from "../../components/projects/ProjectCard.astro";
 
 import getTranslation from "../../i18n";
 export { getLocaleStaticPaths as getStaticPaths } from "../../i18n/routes";
@@ -19,6 +20,13 @@ const posts = allPosts.filter((post) => post.data.locale === locale);
 const recentPosts = posts
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 	.slice(0, 3);
+
+const allProjects: CollectionEntry<"projects">[] =
+	await getCollection("projects");
+
+const projects = allProjects.filter(
+	(project) => project.data.locale === locale,
+);
 
 const socials = [
 	{ label: "GitHub", href: "https://github.com/pepecoral" },
@@ -75,6 +83,34 @@ const socials = [
 				}
 			</div>
 		</div>
+	</section>
+
+	<div class="divider"></div>
+
+	<section>
+		<div class="mb-6 flex items-center justify-between">
+			<h2 class="text-2xl font-bold">{t.home.featuredProjects}</h2>
+			<a
+				href={getRelativeLocaleUrl(locale, "/projects")}
+				class="link link-primary text-sm font-medium"
+			>
+				{t.home.viewAllProjects} &rarr;
+			</a>
+		</div>
+
+		{
+			projects.length > 0 ? (
+				<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+					{projects.map((project) => (
+						<ProjectCard project={project} locale={locale} t={t} />
+					))}
+				</div>
+			) : (
+				<p class="text-base-content/50 text-sm">
+					No projects yet — check back soon.
+				</p>
+			)
+		}
 	</section>
 
 	<div class="divider"></div>
