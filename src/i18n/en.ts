@@ -46,10 +46,6 @@ const t: Translation = {
         github: "GitHub",
         linkedin: "LinkedIn",
     },
-    projectPage: {
-        viewInGitHub: "View in GitHub",
-        liveDemo: "Live Demo",
-    },
 
     blogArticle: {}
 };

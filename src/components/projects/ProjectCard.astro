@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { project, locale, t } = Astro.props;
-const { title, description, tags, image, url, github, featured } = project.data;
+const { title, description, tags, image, links, featured } = project.data;
 
 const projectUrl = getRelativeLocaleUrl(locale, `/projects/${project.data.slug}`);
 ---
@@ -52,16 +52,13 @@ const projectUrl = getRelativeLocaleUrl(locale, `/projects/${project.data.slug}`
             }
         </div>
         {
-            (url || github) && (
+            links.length > 0 && (
                 <div class="card-actions mt-3 justify-end gap-2">
-                    {url && (
-                        <span class="btn btn-primary btn-xs">
-                            {t.projectPage.liveDemo}
+                    {links.map((link) => (
+                        <span class:list={[link.class ?? "btn btn-outline btn-xs"]}>
+                            {link.card}
                         </span>
-                    )}
-                    {github && (
-                        <span class="btn btn-outline btn-xs">GitHub</span>
-                    )}
+                    ))}
                 </div>
             )
         }

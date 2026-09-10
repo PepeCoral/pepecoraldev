@@ -39,7 +39,7 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, tags, image, url, github, featured } = project.data;
+const { title, description, tags, image, links, featured } = project.data;
 
 const page: PageTranslation = { title, description };
 
@@ -63,28 +63,16 @@ const { Content } = await render(project);
 
             <div class="mt-6 flex flex-wrap items-center gap-3">
                 {
-                    url && (
+                    links.map((link) => (
                         <a
-                            href={url}
+                            href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn-primary btn-sm"
+                            class:list={[link.class ?? "btn btn-primary btn-sm"]}
                         >
-                            {t.projectPage.liveDemo}
+                            {link.page}
                         </a>
-                    )
-                }
-                {
-                    github && (
-                        <a
-                            href={github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-outline btn-sm"
-                        >
-                            {t.projectPage.viewInGitHub}{" "}
-                        </a>
-                    )
+                    ))
                 }
             </div>
 

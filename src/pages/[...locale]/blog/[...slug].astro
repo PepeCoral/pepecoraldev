@@ -39,7 +39,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, tags, image } = post.data;
+const { title, description, tags, image, links } = post.data;
 
 const { Content } = await render(post);
 
@@ -71,6 +71,23 @@ const page: PageTranslation = { title, description };
             >
                 {post.data.date.toLocaleDateString(locale)}
             </time>
+
+            {
+                links.length > 0 && (
+                    <div class="mt-4 flex flex-wrap items-center gap-3">
+                        {links.map((link) => (
+                            <a
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class:list={[link.class ?? "btn btn-primary btn-sm"]}
+                            >
+                                {link.page}
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
 
             <Image
                 src={image}

@@ -45,10 +45,6 @@ export interface ContactTranslation extends PageTranslation {
     github: string;
     linkedin: string;
 }
-export interface ProjectPageTranslation {
-    viewInGitHub: string;
-    liveDemo: string;
-}
 
 export interface BlogArticleTranslation {
 }
@@ -67,8 +63,6 @@ export interface Translation {
     contact: ContactTranslation;
 
     blog: BlogTranslation;
-
-    projectPage: ProjectPageTranslation;
 
     blogArticle: BlogArticleTranslation;
 }

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { post, locale } = Astro.props;
-const { title, description, date, tags, image } = post.data;
+const { title, description, date, tags, image, links } = post.data;
 
 const postUrl = getRelativeLocaleUrl(locale, `/blog/${post.data.slug}`);
 ---
@@ -54,5 +54,16 @@ const postUrl = getRelativeLocaleUrl(locale, `/blog/${post.data.slug}`);
                 })
             }
         </time>
+        {
+            links.length > 0 && (
+                <div class="card-actions mt-3 justify-end gap-2">
+                    {links.map((link) => (
+                        <span class:list={[link.class ?? "btn btn-outline btn-xs"]}>
+                            {link.card}
+                        </span>
+                    ))}
+                </div>
+            )
+        }
     </div>
 </a>

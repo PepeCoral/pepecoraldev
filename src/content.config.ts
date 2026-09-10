@@ -2,6 +2,13 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+const linkSchema = z.object({
+    url: z.string().url(),
+    card: z.string(),
+    page: z.string(),
+    class: z.string().optional(),
+});
+
 const blog = defineCollection({
     loader: glob({
         pattern: "**/*.{md,mdx}",
@@ -22,6 +29,8 @@ const blog = defineCollection({
             featured: z.boolean().default(false),
 
             image: image(),
+
+            links: z.array(linkSchema).default([]),
         }),
 });
 
@@ -45,9 +54,7 @@ const projects = defineCollection({
 
             image: image(),
 
-            url: z.string().url().optional(),
-
-            github: z.string().url().optional(),
+            links: z.array(linkSchema).default([]),
         }),
 });
 
