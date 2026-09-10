@@ -18,7 +18,8 @@ const t: Translation = {
         latestPosts: "Últimos articulos",
         viewAllPosts: "Ver todos",
         featuredProjects: "Proyectos",
-        viewAllProjects: "Ver todos"
+        viewAllProjects: "Ver todos",
+        downloadCv: "Descargar CV"
     },
     projects: {
         title: "Proyectos - Pepe Coral",
@@ -43,6 +44,7 @@ const t: Translation = {
         elsewhereLabel: "En otras redes",
         copyEmail: "Copiar correo",
         copied: "¡Copiado!",
+        downloadCv: "Descargar CV",
         ctaTitle: "Hablemos.",
         ctaBody: "Ya sea que tengas una idea, un proyecto, o solo quieras saludar, no dudes en escribirme.",
         github: "GitHub",

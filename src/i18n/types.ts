@@ -20,6 +20,7 @@ export interface HomeTranslation extends PageTranslation {
     viewAllPosts: string;
     featuredProjects: string;
     viewAllProjects: string;
+    downloadCv: string;
 
 }
 
@@ -42,8 +43,7 @@ export interface ContactTranslation extends PageTranslation {
     elsewhereLabel: string;
     copyEmail: string;
     copied: string;
-    ctaTitle: string;
-    ctaBody: string;
+    downloadCv: string;
     github: string;
     linkedin: string;
 }
