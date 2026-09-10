@@ -23,6 +23,21 @@ const { t, page } = Astro.props;
 		<meta name="description" content={page.description} />
 
 		<title>{page.title}</title>
+
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-63J11D26LB"
+		></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-63J11D26LB");
+		</script>
 	</head>
 
 	<body class="min-h-screen">
