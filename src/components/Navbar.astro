@@ -22,63 +22,108 @@ const navItems = [
     { href: "/blog", label: t.nav.blog },
     { href: "/contact", label: t.nav.contact },
 ];
+
+const locales = [
+    { code: "en", label: "English", short: "EN", aria: "Switch to English" },
+    { code: "es", label: "Español", short: "ES", aria: "Cambiar a español" },
+];
 ---
 
 <div
-    class="navbar bg-base-100 shadow-sm max-w-2xl mx-auto rounded-full px-4 my-5"
+    class="navbar bg-base-100 shadow-sm max-w-2xl mx-auto rounded-full px-2 sm:px-4 my-5"
 >
     <div class="navbar-start">
+        <!-- Mobile menu -->
+        <details class="dropdown lg:hidden">
+            <summary
+                class="btn btn-ghost btn-circle list-none"
+                aria-label="Open menu"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </summary>
+            <ul
+                class="menu dropdown-content bg-base-100 rounded-box z-10 mt-3 w-48 p-2 shadow-sm"
+            >
+                {
+                    navItems.map(({ href, label }) => (
+                        <li>
+                            <a
+                                href={getRelativeLocaleUrl(t.locale, href)}
+                                class:list={{ "text-primary": isActive(href) }}
+                            >
+                                {label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </details>
+
         <a
-            class="ml-4 font-bold text-xl text-primary"
-            href={getRelativeLocaleUrl(t.locale, "/")}>{t.nav.pepe}</a
+            class="ml-1 lg:ml-4 font-bold text-xl text-primary"
+            href={getRelativeLocaleUrl(t.locale, "/")}
         >
+            {t.nav.pepe}
+        </a>
     </div>
 
-    <ul class="navbar-center flex menu menu-horizontal px-1">
-        {
-            navItems.map(({ href, label }) => (
-                <li>
-                    <a
-                        href={getRelativeLocaleUrl(t.locale, href)}
-                        class:list={{ "text-primary": isActive(href) }}
-                    >
-                        {label}
-                    </a>
-                </li>
-            ))
-        }
-        <li>
-            <div class="join rounded-full bg-base-200 p-1">
-                <a
-                    href={getRelativeLocaleUrl(
-                        "en",
-                        currentPathWithoutLocale || "/",
-                    )}
-                    class:list={{
-                        "btn btn-sm join-item rounded-full": true,
-                        "btn-primary": t.locale === "en",
-                        "btn-ghost": t.locale !== "en",
-                    }}
-                    aria-label="Switch to English"
-                >
-                    EN
-                </a>
+    <!-- Desktop menu -->
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+            {
+                navItems.map(({ href, label }) => (
+                    <li>
+                        <a
+                            href={getRelativeLocaleUrl(t.locale, href)}
+                            class:list={{ "text-primary": isActive(href) }}
+                        >
+                            {label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
 
-                <a
-                    href={getRelativeLocaleUrl(
-                        "es",
-                        currentPathWithoutLocale || "/",
-                    )}
-                    class:list={{
-                        "btn btn-sm join-item rounded-full": true,
-                        "btn-primary": t.locale === "es",
-                        "btn-ghost": t.locale !== "es",
-                    }}
-                    aria-label="Cambiar a español"
-                >
-                    ES
-                </a>
-            </div>
-        </li>
-    </ul>
+    <div class="navbar-end">
+        <details class="dropdown dropdown-end">
+            <summary class="btn btn-ghost btn-sm rounded-full gap-1 list-none">
+                {locales.find((l) => l.code === t.locale)?.short}
+            </summary>
+            <ul
+                class="menu dropdown-content bg-base-100 rounded-box z-10 mt-3 w-36 p-2 shadow-sm"
+            >
+                {
+                    locales.map((locale) => (
+                        <li>
+                            <a
+                                href={getRelativeLocaleUrl(
+                                    locale.code,
+                                    currentPathWithoutLocale || "/",
+                                )}
+                                class:list={{
+                                    active: t.locale === locale.code,
+                                }}
+                                aria-label={locale.aria}
+                            >
+                                {locale.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </details>
+    </div>
 </div>
