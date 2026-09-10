@@ -12,19 +12,10 @@ interface Props {
 
 const { t } = Astro.props;
 
-const altLocale = t.locale === "en" ? "es" : "en";
-
 const currentPathWithoutLocale =
     t.locale === "en"
         ? Astro.url.pathname
         : Astro.url.pathname.replace(/^\/es/, "");
-
-const altLocaleHref = getRelativeLocaleUrl(
-    altLocale,
-    currentPathWithoutLocale || "/",
-);
-
-const altLocaleLabel = `/${altLocale}`;
 
 const navItems = [
     { href: "/projects", label: t.nav.projects },
@@ -57,7 +48,37 @@ const navItems = [
             ))
         }
         <li>
-            <a href={altLocaleHref}>{altLocaleLabel}</a>
+            <div class="join rounded-full bg-base-200 p-1">
+                <a
+                    href={getRelativeLocaleUrl(
+                        "en",
+                        currentPathWithoutLocale || "/",
+                    )}
+                    class:list={{
+                        "btn btn-sm join-item rounded-full": true,
+                        "btn-primary": t.locale === "en",
+                        "btn-ghost": t.locale !== "en",
+                    }}
+                    aria-label="Switch to English"
+                >
+                    EN
+                </a>
+
+                <a
+                    href={getRelativeLocaleUrl(
+                        "es",
+                        currentPathWithoutLocale || "/",
+                    )}
+                    class:list={{
+                        "btn btn-sm join-item rounded-full": true,
+                        "btn-primary": t.locale === "es",
+                        "btn-ghost": t.locale !== "es",
+                    }}
+                    aria-label="Cambiar a español"
+                >
+                    ES
+                </a>
+            </div>
         </li>
     </ul>
 </div>

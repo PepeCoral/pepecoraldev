@@ -9,7 +9,8 @@ tags:
   - data-driven
   
 featured: false
-image: "../../assets/blog/astro-routing.jpeg"
+image: "../../assets/blog/cv/thumbnail.png"
+
 ---
 
 ## El problema
