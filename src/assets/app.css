@@ -19,5 +19,6 @@ html {
     background-size: 20px 20px;
 
     --color-primary: #db4f1d;
-    --color-primary-content: #ffffff
+    --color-primary-content: #ffffff;
+    --color-neutral-content: #ffffff
 }
