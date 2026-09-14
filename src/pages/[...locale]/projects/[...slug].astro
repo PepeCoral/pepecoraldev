@@ -47,7 +47,7 @@ const { Content } = await render(project);
 ---
 
 <Layout t={t} page={page}>
-    <article class="mx-auto max-w-3xl">
+    <article class="mx-auto">
         <header class="mb-10">
             <div class="mb-4 flex flex-wrap gap-2">
                 {
@@ -68,7 +68,9 @@ const { Content } = await render(project);
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class:list={[link.class ?? "btn btn-primary btn-sm"]}
+                            class:list={[
+                                link.class ?? "btn btn-primary btn-sm",
+                            ]}
                         >
                             {link.page}
                         </a>
