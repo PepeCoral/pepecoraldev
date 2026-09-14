@@ -51,6 +51,12 @@ export interface ContactTranslation extends PageTranslation {
 export interface BlogArticleTranslation {
 }
 
+export interface NotFoundTranslation extends PageTranslation {
+    h1: string;
+    body: string;
+    backHome: string;
+}
+
 
 
 export interface Translation {
@@ -67,6 +73,8 @@ export interface Translation {
     blog: BlogTranslation;
 
     blogArticle: BlogArticleTranslation;
+
+    notFound: NotFoundTranslation;
 }
 
 

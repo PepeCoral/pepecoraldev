@@ -52,7 +52,14 @@ const t: Translation = {
     },
 
 
-    blogArticle: {}
+    blogArticle: {},
+    notFound: {
+        title: "404 - Página no encontrada - Pepe Coral",
+        description: "La página que buscas no existe o se ha movido.",
+        h1: "Página no encontrada",
+        body: "La página que buscas no existe o se ha movido.",
+        backHome: "Volver al inicio",
+    },
 };
 
 export default t;

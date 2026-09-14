@@ -51,7 +51,14 @@ const t: Translation = {
         linkedin: "LinkedIn",
     },
 
-    blogArticle: {}
+    blogArticle: {},
+    notFound: {
+        title: "404 - Page not found - Pepe Coral",
+        description: "The page you're looking for doesn't exist or has been moved.",
+        h1: "Page not found",
+        body: "The page you're looking for doesn't exist or has been moved.",
+        backHome: "Go back home",
+    },
 };
 
 export default t;
