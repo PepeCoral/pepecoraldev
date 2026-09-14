@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/Icon.astro";
 import PostCard from "../../components/blog/PostCard.astro";
 import ProjectCard from "../../components/projects/ProjectCard.astro";
 
@@ -29,8 +30,16 @@ const projects = allProjects.filter(
 );
 
 const socials = [
-	{ label: "GitHub", href: "https://github.com/pepecoral" },
-	{ label: "LinkedIn", href: "https://linkedin.com/in/pepe-coral" },
+	{
+		label: "GitHub",
+		href: "https://github.com/pepecoral",
+		icon: "github",
+	},
+	{
+		label: "LinkedIn",
+		href: "https://linkedin.com/in/pepe-coral",
+		icon: "linkedin",
+	},
 ];
 ---
 
@@ -54,21 +63,12 @@ const socials = [
 
 			<div class="flex flex-wrap justify-center gap-3">
 				<a href="mailto:hello@pepecoral.dev" class="btn btn-primary">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="size-4"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-					>
-						<rect x="2" y="4" width="20" height="16" rx="2"></rect>
-						<path d="m22 6-10 7L2 6"></path>
-					</svg>
+					<Icon name="mail" />
 					{t.home.getInTouch}
 				</a>
 
 				<a href="/cv.pdf" download class="btn btn-outline">
+					<Icon name="download" />
 					{t.home.downloadCv}
 				</a>
 
@@ -81,6 +81,7 @@ const socials = [
 							class="btn
 							btn-outline"
 						>
+							<Icon name={s.icon} />
 							{s.label}
 						</a>
 					))
