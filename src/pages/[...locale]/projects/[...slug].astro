@@ -6,6 +6,7 @@ import Layout from "../../../layouts/Layout.astro";
 
 import { localePaths } from "../../../i18n/routes";
 import getTranslation from "../../../i18n";
+import Icon from "../../../components/Icon.astro";
 
 const locale = Astro.params.locale ?? "en";
 const t = getTranslation(locale);
@@ -69,10 +70,13 @@ const { Content } = await render(project);
                             target="_blank"
                             rel="noopener noreferrer"
                             class:list={[
-                                link.class ?? "btn btn-primary btn-sm",
+                                link.pageClass ?? "btn btn-primary btn-sm",
                             ]}
                         >
-                            {link.page}
+                            <span class="inline-flex items-center gap-1.5">
+                                {link.icon && <Icon name={link.icon} class="size-4" />}
+                                {link.page}
+                            </span>
                         </a>
                     ))
                 }

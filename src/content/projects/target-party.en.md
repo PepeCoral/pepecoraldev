@@ -14,6 +14,9 @@ links:
   - url: "https://store.steampowered.com/app/2467370/Target_Party/"
     card: Steam
     page: View on Steam
+    icon: steam
+    pageClass: "btn btn-sm btn-neutral"
+
 ---
 
 **Target Party** is a first-person platformer focused on **movement, precision, and speedrunning**. The goal is simple: complete each level as quickly as possible while destroying every target you encounter along the way.

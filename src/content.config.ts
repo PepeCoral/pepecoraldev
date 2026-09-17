@@ -6,7 +6,9 @@ const linkSchema = z.object({
     url: z.string().url(),
     card: z.string(),
     page: z.string(),
-    class: z.string().optional(),
+    icon: z.enum(["github", "steam"]).optional(),
+    cardClass: z.string().optional(),
+    pageClass: z.string().optional(),
 });
 
 const blog = defineCollection({

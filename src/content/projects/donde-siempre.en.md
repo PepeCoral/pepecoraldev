@@ -15,11 +15,13 @@ links:
   - url: "https://github.com/ispp-knot/dondesiempre-backend"
     card: Backend
     page: Backend in GitHub
-    class: "btn btn-sm btn-neutral"
+    icon: github
+    pageClass: "btn btn-sm btn-neutral"
   - url: "https://github.com/ispp-knot/dondesiempre-frontend"
     card: Frontend
     page: Frontend in GitHub
-    class: "btn btn-sm btn-neutral"
+    icon: github
+    pageClass: "btn btn-sm btn-neutral"
 
 ---
 

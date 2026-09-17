@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
+import Icon from "../Icon.astro";
 
 interface Props {
     post: CollectionEntry<"blog">;
@@ -58,8 +59,15 @@ const postUrl = getRelativeLocaleUrl(locale, `/blog/${post.data.slug}`);
             links.length > 0 && (
                 <div class="card-actions mt-3 justify-end gap-2">
                     {links.map((link) => (
-                        <span class:list={[link.class ?? "btn btn-outline btn-xs"]}>
-                            {link.card}
+                        <span
+                            class:list={[
+                                link.cardClass ?? "btn btn-outline btn-xs",
+                            ]}
+                        >
+                            <span class="inline-flex items-center gap-1.5">
+                                {link.icon && <Icon name={link.icon} class="size-3.5" />}
+                                {link.card}
+                            </span>
                         </span>
                     ))}
                 </div>

@@ -15,6 +15,7 @@ links:
     card: Steam
     page: Ver en Steam
     icon: steam
+    pageClass: "btn btn-sm btn-neutral"
 ---
 
 **Target Party** es un juego de plataformas en primera persona centrado en el **movimiento, la precisión y los speedruns**. El objetivo es sencillo: completar cada nivel lo más rápido posible mientras destruyes todos los objetivos que encuentres por el camino.
