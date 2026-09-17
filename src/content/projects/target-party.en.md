@@ -13,33 +13,46 @@ image: "../../assets/projects/target-party/target-party-thumbnail.png"
 links:
   - url: "https://store.steampowered.com/app/2467370/Target_Party/"
     card: Steam
-    page: View in Steam
+    page: View on Steam
 ---
 
-# Target Party
+**Target Party** is a first-person platformer focused on **movement, precision, and speedrunning**. The goal is simple: complete each level as quickly as possible while destroying every target you encounter along the way.
 
-*Target Party* is a fast-paced first-person platformer focused on movement, precision and speedrunning. The idea behind the game is simple: reach the end of each level as quickly as possible while destroying all the targets along the way.
+<div style="display: flex; justify-content: center;">
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/rNogev85BKY?si=6y0vY_lWw7w5phEt"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
-This project was developed entirely by me, from the initial prototype to the final release. I worked on the programming, gameplay systems, level design, movement, UI and the rest of the development process, making it one of my biggest projects as a solo developer.
+The project was developed **entirely by me**, from the initial prototype through to the final release. I handled the programming, gameplay systems, level design, movement, UI, and the rest of the development process, making it one of my most ambitious projects as a solo developer.
 
 ## Development
 
-The project started as an experiment around first-person movement and fast-paced gameplay. As the core mechanics became more enjoyable, I started building levels and systems around them, gradually turning the prototype into a complete game.
+The project started as an experiment focused on creating a **fast and satisfying first-person movement system**. As the core mechanics evolved, I began designing levels and systems around them, gradually turning the initial prototype into a complete game.
 
-One of the main challenges was finding the right balance between movement that feels fast and satisfying while still giving the player enough control and precision. The levels were designed to encourage experimentation and replayability, with the idea that players could improve their routes and times as they became more familiar with the mechanics.
+One of the main challenges was finding the right balance between fast, satisfying movement and giving players the **control and precision they needed**. The levels were designed to encourage experimentation and replayability, allowing players to refine their routes and improve their times as they mastered the mechanics.
 
-Working on the project alone also meant taking care of many different parts of development at the same time. It was a great opportunity to improve my skills with Unity and C#, while also learning more about level design, game feel, iteration and the practical side of finishing and releasing a game.
+As a solo developer, I also had to handle different areas of game development simultaneously. This allowed me to deepen my knowledge of **Unity and C#**, while also gaining experience in level design, *game feel*, gameplay iteration, and, most importantly, the full process of **finishing, preparing, and publishing a video game**.
 
-## Events & Release
+## Events and Release
 
-During development, I had the opportunity to showcase *Target Party* at **Steam Next Fest**, where players could try the game and provide feedback directly. Taking part in the event was especially valuable because it gave me the chance to see how people approached the game without any previous knowledge of its mechanics.
+During development, I had the opportunity to showcase **Target Party** at **Steam Next Fest**, where players could try the game and provide feedback directly. Taking part in the event was particularly valuable, as it allowed me to observe how players who had never encountered the game before discovered and learned its mechanics.
 
-The project was also showcased at **Indie Dev Day**, giving me another opportunity to meet other developers, talk about the game and get feedback from players in person.
+The project was also showcased at **Indie Dev Day**, where I had the opportunity to meet other developers, talk about the project, and receive direct feedback from players.
 
-These events were an important part of the project and helped me understand the difference between developing a game for myself and creating something that other people can pick up, understand and enjoy.
+These experiences were an important part of the development process and helped me better understand the difference between developing a game solely for myself and creating an experience that other people can **discover, understand, and enjoy**.
 
-<img
-  src="/assets/projects/target-party/target-idd.jpg"
-  alt="Target Party at Indie Dev Day"
-  style="width: 100%; max-width: 500px; height: auto;"
-/>
+<div style="display: flex; justify-content: center;">
+  <img
+    src="/assets/projects/target-party/target-idd.jpg"
+    alt="Target Party at Indie Dev Day"
+    style="width: 100%; max-width: 500px; height: auto;"
+  />
+</div>
