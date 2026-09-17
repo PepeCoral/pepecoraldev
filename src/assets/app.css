@@ -13,6 +13,8 @@ body {
 
 html {
 
+    scroll-behavior: smooth;
+
     background-color: oklch(99% 0 0);
     background-image: radial-gradient(oklch(90% 0 0) 1px,
             transparent 1px);
@@ -20,5 +22,15 @@ html {
 
     --color-primary: #db4f1d;
     --color-primary-content: #ffffff;
-    --color-neutral-content: #ffffff
+    --color-neutral-content: #ffffff;
+    --color-secondary: #24B0E2;
+    --color-secondary-content: #ffffff;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    scroll-margin-top: 5rem;
 }

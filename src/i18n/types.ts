@@ -49,6 +49,7 @@ export interface ContactTranslation extends PageTranslation {
 }
 
 export interface BlogArticleTranslation {
+    onThisPage: string;
 }
 
 export interface NotFoundTranslation extends PageTranslation {

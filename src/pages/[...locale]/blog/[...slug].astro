@@ -7,6 +7,7 @@ import type { PageTranslation } from "../../../i18n/types";
 import getTranslation from "../../../i18n";
 import { localePaths } from "../../../i18n/routes";
 import Icon from "../../../components/Icon.astro";
+import PostToc from "../../../components/blog/PostToc.astro";
 
 const locale = Astro.params.locale ?? "en";
 const t = getTranslation(locale);
@@ -42,7 +43,9 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, tags, image, links } = post.data;
 
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+
+const tocHeadings = headings.filter((heading) => heading.depth > 1);
 
 const page: PageTranslation = { title, description };
 ---
@@ -103,6 +106,13 @@ const page: PageTranslation = { title, description };
                 height={630}
             />
         </header>
+
+        <div class="mb-8">
+            <PostToc
+                headings={tocHeadings}
+                label={t.blogArticle.onThisPage}
+            />
+        </div>
 
         <div class="prose prose-lg max-w-none">
             <Content />

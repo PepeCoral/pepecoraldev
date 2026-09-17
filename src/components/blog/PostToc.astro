@@ -1,0 +1,61 @@
+---
+import TocList, { type TocItem } from "./TocList.astro";
+
+export interface TocHeading {
+    depth: number;
+    slug: string;
+    text: string;
+}
+
+interface Props {
+    headings: TocHeading[];
+    label: string;
+}
+
+const { headings, label } = Astro.props;
+
+function buildTree(headings: TocHeading[]): TocItem[] {
+    const root: TocItem = { depth: 0, slug: "", text: "", children: [] };
+    const stack: TocItem[] = [root];
+
+    for (const heading of headings) {
+        const item: TocItem = {
+            depth: heading.depth,
+            slug: heading.slug,
+            text: heading.text,
+            children: [],
+        };
+
+        while (
+            stack.length > 1 &&
+            stack[stack.length - 1].depth >= heading.depth
+        ) {
+            stack.pop();
+        }
+
+        stack[stack.length - 1].children.push(item);
+        stack.push(item);
+    }
+
+    return root.children;
+}
+
+const tree = buildTree(headings);
+---
+
+{
+    tree.length > 0 && (
+        <nav
+            class="rounded-box border border-base-300 bg-base-100 p-4 sm:p-5"
+            aria-label={label}
+        >
+            <p class="text-xs font-semibold uppercase tracking-wider text-base-content/50">
+                {label}
+            </p>
+
+            <div class="mt-3">
+                <TocList items={tree} />
+            </div>
+        </nav>
+    )
+}

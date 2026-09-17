@@ -51,7 +51,7 @@ const t: Translation = {
         linkedin: "LinkedIn",
     },
 
-    blogArticle: {},
+    blogArticle: { onThisPage: "On this page" },
     notFound: {
         title: "404 - Page not found - Pepe Coral",
         description: "The page you're looking for doesn't exist or has been moved.",

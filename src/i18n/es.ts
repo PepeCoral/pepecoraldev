@@ -52,7 +52,7 @@ const t: Translation = {
     },
 
 
-    blogArticle: {},
+    blogArticle: { onThisPage: "En esta página" },
     notFound: {
         title: "404 - Página no encontrada - Pepe Coral",
         description: "La página que buscas no existe o se ha movido.",

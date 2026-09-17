@@ -1,0 +1,53 @@
+---
+export interface TocItem {
+    depth: number;
+    slug: string;
+    text: string;
+    children: TocItem[];
+}
+
+interface Props {
+    items: TocItem[];
+    prefix?: string;
+    nested?: boolean;
+}
+
+const { items, prefix = "", nested = false } = Astro.props;
+---
+
+<div
+    class:list={[
+        "flex flex-col gap-2",
+        nested && "mt-2 ml-5 border-l-2 border-base-200 pl-4",
+    ]}
+>
+    {
+        items.map((item, index) => {
+            const number = `${prefix}${index + 1}`;
+            return (
+                <div>
+                    <a
+                        href={`#${item.slug}`}
+                        class:list={[
+                            "badge gap-1.5 border-base-300 bg-base-100 px-3 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary",
+                            item.depth > 2 && "text-base-content/60",
+                        ]}
+                    >
+                        <span class="font-semibold text-base-content/50">{number}</span>
+                        {item.text}
+                    </a>
+
+                    {
+                        item.children.length > 0 && (
+                            <Astro.self
+                                items={item.children}
+                                prefix={`${number}.`}
+                                nested={true}
+                            />
+                        )
+                    }
+                </div>
+            );
+        })
+    }
+</div>
