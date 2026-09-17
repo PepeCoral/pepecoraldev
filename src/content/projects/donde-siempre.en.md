@@ -2,44 +2,54 @@
 locale: en
 slug: donde-siempre
 title: "Donde Siempre"
-description: "A fast-paced first-person platformer developed solo with Unity and C#."
+description: "A local commerce marketplace focused on the fashion niche."
 tags:
-  - gamedev
-  - unity
-  - c#
+  - api
+  - web
+  - spring
+  - nextjs
 
 featured: false
 image: "../../assets/projects/donde-siempre/thumbnail.png"
 links:
-  - url: "https://store.steampowered.com/app/2467370/Target_Party/"
-    card: Steam
-    page: View in Steam
+  - url: "https://github.com/ispp-knot/dondesiempre-backend"
+    card: Backend
+    page: Backend in GitHub
+    class: "btn btn-sm btn-neutral"
+  - url: "https://github.com/ispp-knot/dondesiempre-frontend"
+    card: Frontend
+    page: Frontend in GitHub
+    class: "btn btn-sm btn-neutral"
+
 ---
 
-# Target Party
+**Donde Siempre** was a university project developed as part of the ISPP (Software Engineering and Professional Practice) course by a team of **17 software engineers over one semester**. The project was awarded an **Honors Grade (Matrícula de Honor)** in recognition of the work carried out and the results achieved.
 
-*Target Party* is a fast-paced first-person platformer focused on movement, precision and speedrunning. The idea behind the game is simple: reach the end of each level as quickly as possible while destroying all the targets along the way.
+The project involved developing a **Progressive Web App (PWA)** aimed at supporting local commerce. The platform allowed shops and businesses to register, create a virtual storefront, publish their products, and offer their services online. As a result, we delivered a **functional MVP**, with one version dedicated to testing through continuous deployment and **four versions deployed to pilot users** recruited during the development of the project.
 
-This project was developed entirely by me, from the initial prototype to the final release. I worked on the programming, gameplay systems, level design, movement, UI and the rest of the development process, making it one of my biggest projects as a solo developer.
+<div style="display: flex; justify-content: center;">
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/TP6aJ4_gG8o?si=wHUWO3xU9EWejoG7"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
-## Development
+During MVP development, I was part of the project's **technical leadership**, within a structure organized into multidisciplinary teams coordinated by four *team leaders*. I served as **Technical Team Leader**, responsible for technology selection, application architecture, development standards, and technical coordination across the team.
 
-The project started as an experiment around first-person movement and fast-paced gameplay. As the core mechanics became more enjoyable, I started building levels and systems around them, gradually turning the prototype into a complete game.
+The application followed a **client-server architecture**, with a backend developed in **Spring Boot** using a layered architecture based on **Controller, Service, and Repository**, and a frontend developed in **Next.js** using *Client-Side Rendering (CSR)*. Communication between both components was handled through a **REST API** documented with **OpenAPI**. For persistence, we used **PostgreSQL** and **Spring Data JPA**, while authentication was implemented using **JWT**.
 
-One of the main challenges was finding the right balance between movement that feels fast and satisfying while still giving the player enough control and precision. The levels were designed to encourage experimentation and replayability, with the idea that players could improve their routes and times as they became more familiar with the mechanics.
+One of the main goals of my work was to establish an infrastructure that would ensure **code quality and consistency** as the team grew. I defined and standardized the development process using a **Trunk-Based Development** branching strategy, with *Pull Requests* as a mandatory integration mechanism. No developer could merge directly into `main`, and all code had to undergo a **manual review** before being integrated.
 
-Working on the project alone also meant taking care of many different parts of development at the same time. It was a great opportunity to improve my skills with Unity and C#, while also learning more about level design, game feel, iteration and the practical side of finishing and releasing a game.
+I also contributed to the design and maintenance of the **CI/CD pipeline using GitHub Actions**. Every Pull Request automatically ran tests, linters, and quality analysis with **SonarQube**, with these checks enforced as mandatory requirements before merging. In addition, we implemented **continuous deployment to Azure**, allowing us to maintain an up-to-date version of the project for continuous testing.
 
-## Events & Release
+To facilitate team coordination, we also automated development-related notifications. Opening Pull Requests and issues automatically triggered notifications on the team's **Discord server**, keeping developers informed without requiring manual tracking.
 
-During development, I had the opportunity to showcase *Target Party* at **Steam Next Fest**, where players could try the game and provide feedback directly. Taking part in the event was especially valuable because it gave me the chance to see how people approached the game without any previous knowledge of its mechanics.
+From a project management perspective, we followed a **Scrumban** methodology, using **GitHub Projects** to organize and track work and holding regular retrospectives to identify issues and improve our processes.
 
-The project was also showcased at **Indie Dev Day**, giving me another opportunity to meet other developers, talk about the game and get feedback from players in person.
-
-These events were an important part of the project and helped me understand the difference between developing a game for myself and creating something that other people can pick up, understand and enjoy.
-
-<img
-  src="/assets/projects/target-party/target-idd.jpg"
-  alt="Target Party at Indie Dev Day"
-  style="width: 100%; max-width: 500px; height: auto;"
-/>
+In addition to my technical leadership responsibilities, I was directly involved in **developing key MVP features**. Coordinating a team of 17 engineers was one of the project's main challenges, particularly when it came to maintaining effective communication, establishing shared processes, and ensuring that technical decisions were applied consistently across teams. This experience allowed me to strengthen not only my technical skills, but also my **leadership, coordination, and software development team management skills**.
