@@ -2,7 +2,7 @@
 locale: es
 slug: target-party
 title: "Target Party"
-description: "Un juego de plataformas en primera persona trepidante, desarrollado en solitario con Unity y C#."
+description: "Un trepidante juego de plataformas en primera persona."
 tags:
   - gamedev
   - unity

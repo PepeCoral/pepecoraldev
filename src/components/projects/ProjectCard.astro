@@ -14,7 +14,10 @@ interface Props {
 const { project, locale, t } = Astro.props;
 const { title, description, tags, image, links, featured } = project.data;
 
-const projectUrl = getRelativeLocaleUrl(locale, `/projects/${project.data.slug}`);
+const projectUrl = getRelativeLocaleUrl(
+    locale,
+    `/projects/${project.data.slug}`,
+);
 ---
 
 <a
@@ -44,12 +47,14 @@ const projectUrl = getRelativeLocaleUrl(locale, `/projects/${project.data.slug}`
             )
         }
         <h3 class="card-title text-lg">{title}</h3>
-        <p class="line-clamp-2 text-sm text-base-content/60">{description}</p>
+        <p class="text-sm text-base-content/60">{description}</p>
         <div class="mt-2 flex flex-wrap gap-2">
             {
-                tags.slice(0, 3).map((tag: string) => (
-                    <span class="badge badge-outline badge-sm">{tag}</span>
-                ))
+                tags
+                    .slice(0, 3)
+                    .map((tag: string) => (
+                        <span class="badge badge-outline badge-sm">{tag}</span>
+                    ))
             }
         </div>
         {
@@ -62,7 +67,9 @@ const projectUrl = getRelativeLocaleUrl(locale, `/projects/${project.data.slug}`
                             ]}
                         >
                             <span class="inline-flex items-center gap-1.5">
-                                {link.icon && <Icon name={link.icon} class="size-3.5" />}
+                                {link.icon && (
+                                    <Icon name={link.icon} class="size-3.5" />
+                                )}
                                 {link.card}
                             </span>
                         </span>

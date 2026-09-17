@@ -2,7 +2,7 @@
 locale: en
 slug: target-party
 title: "Target Party"
-description: "A fast-paced first-person platformer developed solo with Unity and C#."
+description: "A fast-paced first-person platformer."
 tags:
   - gamedev
   - unity
