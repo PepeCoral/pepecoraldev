@@ -49,4 +49,24 @@ const { t, page } = Astro.props;
 			<slot />
 		</main>
 	</body>
+
+	<script>
+		const imgs = document.querySelectorAll<HTMLImageElement>("img[src]");
+
+		const reveal = (img: HTMLImageElement) => {
+			img.classList.remove("skeleton");
+			img.style.color = "";
+		};
+
+		for (const img of imgs) {
+			if (img.complete) {
+				reveal(img);
+				continue;
+			}
+
+			img.classList.add("skeleton");
+			img.addEventListener("load", () => reveal(img));
+			img.addEventListener("error", () => reveal(img));
+		}
+	</script>
 </html>

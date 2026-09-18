@@ -47,8 +47,13 @@ const socials = [
 	<section class="hero">
 		<div class="hero-content flex-col text-center">
 			<div class="avatar mb-6">
-				<div class="w-28 sm:w-32 rounded-full">
-					<img src="/avatar.png" alt="Pepe Coral" />
+				<div class="w-28 sm:w-32 overflow-hidden rounded-full">
+					<img
+						class="skeleton aspect-square"
+						src="/avatar.png"
+						alt="Pepe Coral"
+						style="color: transparent"
+					/>
 				</div>
 			</div>
 
@@ -61,12 +66,25 @@ const socials = [
 				{t.home.body}
 			</p>
 
-			<div class="flex flex-wrap justify-center gap-3">
-				<a href="mailto:hello@pepecoral.dev" class="btn btn-primary">
-					<Icon name="mail" />
-					{t.home.getInTouch}
-				</a>
-
+			<div class="flex flex-wrap items-center justify-center gap-3">
+				<button
+					id="copy-email"
+					type="button"
+					class="btn btn-primary transition-colors duration-300"
+					data-email="hello@pepecoral.dev"
+				>
+					<Icon name="copy" />
+					<span id="copy-label" class="grid">
+						<span class="col-start-1 row-start-1" data-copy-label-default
+							>{t.home.copyEmail}</span
+						>
+						<span
+							class="col-start-1 row-start-1 invisible"
+							data-copy-label-copied
+							>{t.home.copied}</span
+						>
+					</span>
+				</button>
 				<a href="/cv.pdf" download class="btn btn-outline">
 					<Icon name="download" />
 					{t.home.downloadCv}
@@ -145,4 +163,45 @@ const socials = [
 			)
 		}
 	</section>
+
+	<script>
+		const email = "hello@pepecoral.dev";
+		const button = document.querySelector<HTMLButtonElement>("#copy-email");
+
+		if (button) {
+			const defaultLabel =
+				button.querySelector<HTMLSpanElement>("[data-copy-label-default]");
+			const copiedLabel =
+				button.querySelector<HTMLSpanElement>("[data-copy-label-copied]");
+
+			let timeout: number | undefined;
+
+			button.addEventListener("click", async () => {
+				try {
+					await navigator.clipboard.writeText(email);
+
+					button.classList.remove("btn-primary");
+					button.classList.add("btn-secondary");
+
+					button.classList.remove("animate-copied-pop");
+					void button.offsetWidth;
+					button.classList.add("animate-copied-pop");
+
+					defaultLabel?.classList.add("invisible");
+					copiedLabel?.classList.remove("invisible");
+
+					clearTimeout(timeout);
+					timeout = window.setTimeout(() => {
+						defaultLabel?.classList.remove("invisible");
+						copiedLabel?.classList.add("invisible");
+
+						button.classList.remove("btn-secondary", "animate-copied-pop");
+						button.classList.add("btn-primary");
+					}, 2000);
+				} catch {
+					window.location.href = `mailto:${email}`;
+				}
+			});
+		}
+	</script>
 </Layout>

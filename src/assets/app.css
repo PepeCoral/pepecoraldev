@@ -5,6 +5,22 @@
     themes: light --default;
 }
 
+@theme {
+    --animate-copied-pop: copied-pop 0.35s ease;
+
+    @keyframes copied-pop {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.08);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
 
 body {
     font-family: "JetBrains Mono", monospace;
@@ -33,4 +49,9 @@ h4,
 h5,
 h6 {
     scroll-margin-top: 5rem;
+}
+
+.prose blockquote p::before,
+.prose blockquote p::after {
+    content: none;
 }

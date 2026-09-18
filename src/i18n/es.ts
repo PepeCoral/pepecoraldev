@@ -19,7 +19,9 @@ const t: Translation = {
         viewAllPosts: "Ver todos",
         featuredProjects: "Proyectos",
         viewAllProjects: "Ver todos",
-        downloadCv: "Descargar CV"
+        downloadCv: "Descargar CV",
+        copyEmail: "Copiar correo",
+        copied: "¡Copiado!"
     },
     projects: {
         title: "Proyectos - Pepe Coral",

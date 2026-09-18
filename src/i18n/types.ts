@@ -21,6 +21,8 @@ export interface HomeTranslation extends PageTranslation {
     featuredProjects: string;
     viewAllProjects: string;
     downloadCv: string;
+    copyEmail: string;
+    copied: string;
 
 }
 
