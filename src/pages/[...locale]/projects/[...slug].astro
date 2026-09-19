@@ -58,9 +58,9 @@ const { Content } = await render(project);
                 }
             </div>
 
-            <h1 class="text-4xl font-bold md:text-5xl">{title}</h1>
+            <h1 class="text-3xl font-bold md:text-5xl">{title}</h1>
 
-            <p class="mt-4 text-xl text-base-content/60">{description}</p>
+            <p class="mt-4 text-lg text-base-content/60 md:text-xl">{description}</p>
 
             <div class="mt-6 flex flex-wrap items-center gap-3">
                 {
@@ -92,7 +92,7 @@ const { Content } = await render(project);
             />
         </header>
 
-        <div class="prose prose-lg max-w-none">
+        <div class="prose max-w-none md:prose-lg">
             <Content />
         </div>
     </article>
