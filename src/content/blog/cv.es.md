@@ -10,32 +10,37 @@ tags:
 
 featured: false
 image: "../../assets/blog/cv/thumbnail.png"
-
+links:
+  - url: "https://github.com/PepeCoral/coral-cv-public"
+    card: Repositorio
+    page: Repositorio en GitHub
+    icon: github
+    pageClass: "btn btn-sm btn-neutral"
 ---
 
 ## El problema
 
-Buscar trabajo es un proceso tedioso. Una parte importante de este proceso consiste en personalizar tu currículum para destacar aquellas habilidades que busca cada oferta y encajar mejor con lo que necesitan.
+Buscar trabajo es un proceso tedioso. En mi caso, una parte importante de este proceso consiste en personalizar mi currículum para destacar aquellas habilidades que busca cada oferta y encajar mejor con lo que necesitan.
 
-La primera solución que se nos ocurre es hacerlo manualmente haces una copia de tu `.docx` o de tu documento de Google y modificas aquello que quieras.
+La primera solución que se me ocurrió fue hacerlo manualmente: hacer una copia de mi `.docx` o de mi documento de Google y modificar aquello que quisiera.
 
-Pronto te verás enterrado en documentos, uno por cada especialidad que dominas, en cada idioma que te interesa, sin hablar de aquellos que personalizas al detalle para esa oferta que te encantó.
+Pronto me vi enterrado en documentos, uno por cada especialidad que quería destacar, en cada idioma que me interesaba, sin hablar de aquellos que personalizaba al detalle para una oferta concreta.
 
-Y entonces un día te das cuenta de que has cometido una falta de ortografía, que el color que utilizaste ya no te gusta o que prefieres utilizar otra fuente. Entonces miras atrás a tu montaña de documentos y te preguntas:
+Y entonces un día me di cuenta de que había cometido una falta de ortografía, que el color que utilizaba ya no me gustaba o que prefería utilizar otra fuente. Entonces miré atrás a mi montaña de documentos y me pregunté:
 
 **¿Cómo se supone que tengo que cambiar esto en cientos de sitios?**
 
-El problema no es realmente tener muchos currículums. El problema es que estamos utilizando el documento final como fuente de datos.
+El problema no era realmente tener muchos currículums. El problema era que estaba utilizando el documento final como fuente de datos.
 
 ## Qué necesitamos
 
-Está claro que utilizar documentos de texto habituales no soluciona nuestro problema. Necesitamos una manera de construir documentos de forma sistemática y organizada.
+Está claro que utilizar documentos de texto habituales no solucionaba mi problema. Necesitaba una manera de construir mis documentos de forma sistemática y organizada.
 
-Tenemos que dejar de ver el PDF que enviamos como el documento que debemos modificar y empezar a verlo como lo que realmente es: **el producto final de un proceso de generación**.
+Tenía que dejar de pensar en el PDF que enviaba como el documento que debía modificar y empezar a verlo como el resultado de un proceso de generación.
 
 La conclusión a la que llegué fue que el documento de Word estaba asumiendo demasiadas responsabilidades y, además, todas estaban acopladas. El documento se encargaba simultáneamente del formato, el estilo y el contenido.
 
-Si somos capaces de dividir estas responsabilidades y crear un sistema que reciba estos elementos y genere como resultado el PDF que buscamos, tendremos el problema resuelto.
+Si era capaz de dividir estas responsabilidades y crear un sistema que recibiera estos elementos y generara como resultado el PDF que buscaba, tendría el problema resuelto.
 
 <div style="display: flex; justify-content: center;">
   <img
@@ -45,8 +50,7 @@ Si somos capaces de dividir estas responsabilidades y crear un sistema que recib
   />
 </div>
 
-
-El currículum deja de ser algo que editamos directamente y pasa a ser algo que generamos.
+Entonces decidí solucionarlo construyendo mi propio sistema de generación de currículums.
 
 ## Cómo podemos resolverlo
 
@@ -62,11 +66,11 @@ Es parecido a HTML en el sentido de que sirve para describir los contenidos de u
 
 En la práctica, Typst no solo incluye un lenguaje de marcado, sino que también cuenta con un lenguaje de programación que nos permite utilizar variables, funciones, condicionales o bucles para la composición de nuestros documentos.
 
-Esto lo hace muy flexible y, en este caso, perfecto para solucionar nuestro problema.
+Esto lo hace muy flexible y, en este caso, perfecto para solucionar mi problema.
 
 Además, su compilador es software libre bajo la licencia Apache License 2.0. El formato de los documentos también está basado en texto plano, por lo que podemos trabajar con ellos cómodamente utilizando sistemas de control de versiones como Git.
 
-Esto último es especialmente importante: nuestro currículum deja de ser un archivo que editamos y pasa a ser código que podemos versionar.
+Esto último es especialmente importante para mi sistema: ahora puedo versionar el currículum como cualquier otro proyecto de código.
 
 ### TOML
 
@@ -78,9 +82,9 @@ En la práctica, TOML funciona de forma similar a JSON o XML: nos permite estruc
 
 En este caso decidí utilizar TOML porque tiene integración directa con Typst, haciendo que sea especialmente sencillo leer los archivos. Además, su sintaxis está pensada para ser fácil de leer y editar por humanos.
 
-TOML nos servirá para definir los datos de nuestro sistema. Por un lado tendremos el contenido de nuestro currículum y, por otro, la configuración necesaria para generar cada una de sus variantes.
+TOML me sirve para definir los datos de mi sistema. Por un lado tengo el contenido de mi currículum y, por otro, la configuración necesaria para generar cada una de sus variantes.
 
-Por ejemplo, si cambias tu puesto actual:
+Por ejemplo, si cambio mi puesto actual:
 
 ```diff
 - role = "Software Engineer"
@@ -113,7 +117,6 @@ Esto permite que una misma plantilla pueda generar diferentes currículums sin t
 
 Por ejemplo, puedo tener una configuración para un perfil más orientado a backend, otra para frontend y otra para una oferta concreta. Todas utilizan la misma base y simplemente cambian los datos que se proporcionan a la plantilla.
 
-
 De esta forma, personalizar un currículum ya no significa editar un documento existente. Significa crear o modificar una configuración.
 
 ## GitHub Actions
@@ -130,14 +133,17 @@ Además, los PDFs resultantes se almacenan como releases en mi repositorio, qued
   <img
     src="/assets/blog/cv/builds.png"
     alt="Una imagen de github actions completadas de compilar los documentos."
-    style="width: 100%;  height: auto;"
+    style="width: 100%; height: auto;"
   />
 </div>
-Esto tiene una ventaja indirecta, mi currículum también tiene historial. Puedo saber qué cambios hice, cuándo los hice y qué versión estaba utilizando en un momento determinado. Si algo se rompe, puedo volver a una versión anterior. Si cambio el diseño, todas las variantes se pueden regenerar utilizando la nueva plantilla.
+
+Esto tiene una ventaja indirecta: mi currículum también tiene historial. Puedo saber qué cambios hice, cuándo los hice y qué versión estaba utilizando en un momento determinado. Si algo se rompe, puedo volver a una versión anterior. Si cambio el diseño, todas las variantes se pueden regenerar utilizando la nueva plantilla.
 
 Ya no tengo una carpeta llena de documentos llamados cosas como `CV_final.pdf`, `CV_final_2.pdf` o `CV_final_definitivo.pdf`.
 
-Tengo un repositorio. Con realeases versionadas accesible desde cualquier sitio y siempre listas para descargar.
+Tengo un repositorio, con releases versionadas, accesible desde cualquier sitio y siempre listas para descargar.
+
+Y todo el sistema está publicado en GitHub. Si te interesa montar algo parecido, puedes consultar el código, las plantillas y la estructura que utilizo en mi propio currículum y adaptarlos a tus necesidades.
 
 ## Conclusiones
 
@@ -153,4 +159,4 @@ Y, al estar todo basado en texto y versionado con Git, también he ganado algo q
 
 Probablemente este sistema sea excesivo para alguien que solo necesita enviar un par de currículums al año. Para mí, sin embargo, el coste inicial de montarlo se ha compensado rápidamente.
 
-Al final, la idea no era automatizar la creación de un currículum, si no dejar de editar currículums.
+Al final, la idea no era automatizar la creación de un currículum, si no hacerme la vida más fácil en mi día a día.
